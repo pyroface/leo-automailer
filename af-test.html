@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>fetcha Arbetsförmedlingens API</title>
+  <link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+
+<body>
+  <p>I am alive</p>
+  <div id="userButtons">
+    <button id="getJob">jobb</button>
+    <button id="getUsers"> Få annonser</button>
+  </div>
+
+  <div id="output"></div>
+  <div id="details"></div>
+
+  <script>
+    document.getElementById('getJob').addEventListener('click',getJob);
+    document.getElementById('getUsers').addEventListener('click',getUsers);
+    const detailsDiv = document.getElementById('details')
+
+    function getJob(){
+      fetch('sample.rtf')
+      .then((res) => res.text())
+      .then((data) => {
+        document.getElementById('output').innerHTML = data;
+      })
+    }
+    
+    function AFApi (url) {
+      return fetch('http://api.arbetsformedlingen.se/af/v0' + url).then(res => res.json())
+    }
+
+
+    function getUsers(){
+    //SKAPA NPM INIT FETCHA API:et GENOM JSON FILEN
+    AFApi('/platsannonser/matchning?lanid=1')
+	    .then(res => {
+      console.log(res)
+
+      const annonser = res.matchningslista.matchningdata
+      document.getElementById('output').innerHTML = annonser
+        .map(annons => `
+          <div id="annonsContent">
+            <p>${annons.annonsrubrik}</p>
+            <button id="${annons.annonsid}" class="annonsButton">knapp</button>
+          </div>
+          `).join('')
+          
+          document.querySelectorAll('#output button')
+            .forEach(button => {
+            button.addEventListener('click', (event) => {
+
+            AFApi('/platsannonser/' + event.target.id)
+            .then(renderDetail)
+          })
+        })
+      }) 
+    }
+    function renderDetail (res) {
+      console.log(res)
+      detailsDiv.innerHTML = `
+        <div id="webbplats">
+          <p id="webbplatsPara">${res.platsannons.arbetsplats.arbetsplatsnamn}</p>
+          <p id="webbplatsPara">Sista ansökningsdag <br>${res.platsannons.ansokan.sista_ansokningsdag}</p>
+          <a id="webbplatsUrl" href="${res.platsannons.ansokan.webbplats}">webbplats</a>
+        </div>`
+    }
+    //pratar med snurran.js
+    // function sendEmail ( ){
+    //   var message = "nånting email";
+    //   AFApi('/platsannonser/' + event.target.id)
+    //   .then(columnContacts.email).push(email)
+
+    // }
+
+    //datum.toDateString()
+    var data = JSON.stringify(annonser, null, 2);
+    writeFile('annonser',data, finished);
+    </script>
+  </body>
+</html>

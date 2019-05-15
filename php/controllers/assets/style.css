@@ -1,0 +1,65 @@
+th{
+  font: bold 12px arial, sans-serif; 
+  background:#336699;
+  color:#f2f2f2;
+  padding:2px 5px 2px 5px;
+}
+#weight_form{
+  width:45px;
+}
+
+tr{
+  font: 15px arial, sans-serif;
+  text-align: left ;
+}
+tr:nth-child(odd){
+  background: #bfbfbf;
+}
+tr:nth-child(even){
+  background: #f2f2f2;
+}
+
+a{
+  color: black;
+  text-decoration: none;
+  font: 15px arial, sans-serif;
+}
+a:hover{
+  color:gray;
+}
+table{
+  border: 1px solid #f2f2f2;
+}
+.pagi{
+  color: black;
+}
+.curPage {
+  
+  color: #fff;
+}
+main{padding: 100px 15px 0;}
+
+.centerColumn{
+  text-align: center ;
+}
+.headerRow a{
+  color:white;
+}
+.card-holder .card{
+  background:white;
+  border-left: 3px solid;
+  box-shadow: 1px 1px 10px #888888;
+}
+.card-holder .col-sm:nth-child(1) .card {
+  border-left-color: #6610f2;
+}
+.card-holder .col-sm:nth-child(2) .card {
+  border-left-color: #ffc107;
+}
+.card-holder .col-sm:nth-child(3) .card {
+  border-left-color: #e83e8c;
+}
+.chart{
+  padding: 15px;
+  box-shadow: 1px 1px 10px #888888;
+}

@@ -1,0 +1,4 @@
+RewriteEngine on
+RewriteCond %{HTTP_HOST} ^http://localhost:8888$ [NC,OR]
+RewriteCond %{REQUEST_URI} !controllers/
+RewriteRule (.*) /controllers/$1 [L]

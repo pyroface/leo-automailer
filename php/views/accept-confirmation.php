@@ -1,0 +1,1 @@
+<h1> TACK FÖR ATT DU ACCEPTERADE</h1>

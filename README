@@ -1,0 +1,7 @@
+Mail servicen som används är MailGun
+
+för att "skicka mail" - knappen på company sidan ska funka så
+måsta man köra test.js i node först
+
+för att sätta upp servern kör "npm run migrate" för att starta 
+och "npm run migrate:rollback" föör att droppa table
